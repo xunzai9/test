@@ -1,8 +1,8 @@
-// 原配置对象（完整保留）
+// 1. 定义漫画源配置对象
 const comicSource = {
     name: "鸟鸟韩漫",
     key: "nnhanman7",
-    version: "1.0.22",
+    version: "1.0.21",
     minAppVersion: "1.0.0",
     url: "https://nnhanman7.com",
     searchOptions: [],
@@ -73,9 +73,9 @@ const comicSource = {
     }
 };
 
-// 关键修复：调用宿主环境的注册方法
+// 2. 核心修复：调用宿主环境的注册方法（解决 Invalid Content + registerComicSource 未定义问题）
 if (typeof registerComicSource === 'function') {
-    registerComicSource(comicSource); // 注册漫画源配置
+    registerComicSource(comicSource); // 将配置注册到宿主环境
 } else {
-    console.error('registerComicSource 方法未找到，无法注册漫画源');
+    console.error("注册失败：未找到 registerComicSource 方法");
 }
